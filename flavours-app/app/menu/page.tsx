@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { menuItems, categories, getMenuByCategory, type Category } from '@/lib/menu-data';
@@ -20,8 +20,19 @@ export default function MenuPage() {
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredItems = getMenuByCategory(activeCategory);
+  const categoryItems = getMenuByCategory(activeCategory);
+  const filteredItems = useMemo(() => {
+    if (!searchQuery.trim()) return categoryItems;
+    const q = searchQuery.toLowerCase();
+    return categoryItems.filter(
+      (item) =>
+        item.name.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q)
+    );
+  }, [categoryItems, searchQuery]);
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
   const addToCart = useCallback((item: typeof menuItems[0]) => {
@@ -107,26 +118,57 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Category Tabs */}
-      <div className="category-tabs">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`category-tab ${activeCategory === cat ? 'active' : ''}`}
-            onClick={() => setActiveCategory(cat)}
-          >
-            {cat}
-          </button>
-        ))}
+      {/* Search + Category Tabs */}
+      <div className="menu-controls">
+        <div className="menu-search">
+          <span className="menu-search-icon">🔍</span>
+          <input
+            type="text"
+            placeholder="Search for cakes, brownies, cookies..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="menu-search-input"
+            id="menu-search"
+          />
+          {searchQuery && (
+            <button
+              className="menu-search-clear"
+              onClick={() => setSearchQuery('')}
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+        <div className="category-tabs">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`category-tab ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => { setActiveCategory(cat); setSearchQuery(''); }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Menu Grid */}
       <div className="container">
+        {filteredItems.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: 'var(--space-4xl) 0' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
+            <h3 className="heading-sm">No items found</h3>
+            <p className="text-muted" style={{ marginTop: '0.5rem' }}>
+              Try a different search term or browse by category
+            </p>
+          </div>
+        ) : (
         <motion.div
           className="menu-grid"
           initial="hidden"
           animate="visible"
-          key={activeCategory}
+          key={`${activeCategory}-${searchQuery}`}
           variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
         >
           <AnimatePresence mode="wait">
@@ -152,7 +194,12 @@ export default function MenuPage() {
                     <h3>{item.name}</h3>
                     <p>{item.description}</p>
                     <div className="menu-card-footer">
-                      <span className="menu-card-tag">✨ Customisable</span>
+                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                        <span className="menu-card-tag">✨ Customisable</span>
+                        {item.seasonal && (
+                          <span className="menu-card-tag" style={{ background: 'rgba(255, 165, 0, 0.12)', color: '#e68a00' }}>🌸 Seasonal</span>
+                        )}
+                      </div>
                       <button
                         className={`add-to-cart-btn ${inCart ? 'added' : ''}`}
                         onClick={() => addToCart(item)}
@@ -167,6 +214,7 @@ export default function MenuPage() {
             })}
           </AnimatePresence>
         </motion.div>
+        )}
       </div>
 
       {/* Cart Badge (Mobile) */}

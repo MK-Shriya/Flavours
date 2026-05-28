@@ -102,8 +102,8 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Image
-                src="/hero/pexels-murun-e-2158048371-37748387.jpg"
-                alt="Baking with love"
+                src="/lifestyle/birthday-party.jpg"
+                alt="Making memories with Flavours cakes"
                 width={500}
                 height={625}
                 style={{ objectFit: 'cover', width: '100%', height: '100%' }}
@@ -163,6 +163,85 @@ export default function AboutPage() {
               <div className="quality-card-icon">❤️</div>
               <h3>Made with Love</h3>
               <p>Every single item is handcrafted by Sreeja herself. When you order from Flavours, you&apos;re ordering from family.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Art of Baking — New Craft Showcase */}
+      <section className="section about-craft-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="heading-lg">The Art of Baking</h2>
+            <div className="section-divider" />
+            <p>From oven to table — a peek into our world of creation</p>
+          </motion.div>
+
+          <div className="craft-showcase">
+            <motion.div
+              className="craft-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                src="/lifestyle/artisan-decorating.jpg"
+                alt="Artisan cake decorating"
+                width={400}
+                height={530}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+              <div className="craft-card-overlay">
+                <h3>The Finishing Touch</h3>
+                <p>Every cake is hand-decorated with fresh fruits and delicate details</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="craft-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <Image
+                src="/lifestyle/chef-finishing.jpg"
+                alt="Chef perfecting a mousse cake"
+                width={400}
+                height={530}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+              <div className="craft-card-overlay">
+                <h3>Precision & Passion</h3>
+                <p>Every layer, every fold is crafted with meticulous care</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="craft-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Image
+                src="/lifestyle/tiramisu-slice.jpg"
+                alt="Beautiful layered tiramisu"
+                width={400}
+                height={530}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+              <div className="craft-card-overlay">
+                <h3>Layers of Love</h3>
+                <p>Rich, decadent layers that tell a story of flavour</p>
+              </div>
             </motion.div>
           </div>
         </div>

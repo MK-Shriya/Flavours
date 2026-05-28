@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FACEBOOK_LINK } from '@/lib/whatsapp';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -76,18 +75,18 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <div className="contact-icon lavender">📘</div>
+              <div className="contact-icon lavender">🎥</div>
               <div className="contact-info">
-                <h3>Facebook</h3>
+                <h3>YouTube</h3>
                 <a
-                  href={FACEBOOK_LINK}
+                  href="https://www.youtube.com/@flavoursbysreeja"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Flavours — Baked with Love
+                  flavours by sreeja
                 </a>
                 <p style={{ marginTop: '4px' }}>
-                  Follow us for updates and new creations!
+                  Watch our baking videos and tutorials!
                 </p>
               </div>
             </motion.div>

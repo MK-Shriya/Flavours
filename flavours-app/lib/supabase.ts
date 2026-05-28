@@ -1,9 +1,13 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Only create the client if both env vars are provided
+export const supabase: SupabaseClient | null =
+  supabaseUrl && supabaseAnonKey
+    ? createClient(supabaseUrl, supabaseAnonKey)
+    : null;
 
 // --- Orders ---
 export async function createOrder(order: {
@@ -12,6 +16,7 @@ export async function createOrder(order: {
   phone: string;
   items: Array<{ name: string; qty: number }>;
 }) {
+  if (!supabase) return null;
   const { data, error } = await supabase
     .from('orders')
     .insert([
@@ -30,6 +35,7 @@ export async function createOrder(order: {
 }
 
 export async function getOrder(orderId: string) {
+  if (!supabase) return null;
   const { data, error } = await supabase
     .from('orders')
     .select('*')
@@ -48,6 +54,7 @@ export async function submitReview(review: {
   customer_name: string;
   favourite_item?: string;
 }) {
+  if (!supabase) throw new Error('Supabase is not configured');
   // Save the review
   const { error: reviewError } = await supabase
     .from('reviews')
@@ -65,6 +72,7 @@ export async function submitReview(review: {
 }
 
 export async function getReviews(limit = 10) {
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from('reviews')
     .select('*')

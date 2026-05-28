@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "predev": "node -e \"const n=Object.values(require('os').networkInterfaces()).flat().find(i=>i.family==='IPv4'&&!i.internal);if(n)console.log('\\n  📱 Network:  http://'+n.address+':3000\\n')\"",
+    "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

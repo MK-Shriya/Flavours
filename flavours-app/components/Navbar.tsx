@@ -53,11 +53,12 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`nav-link ${pathname === link.href ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Link href="/menu" className="nav-order-btn">
+            <Link href="/menu" className="nav-order-btn" onClick={() => setIsOpen(false)}>
               Order Now
             </Link>
           </div>

@@ -42,4 +42,3 @@ export function getWhatsAppDirectLink(): string {
   return WHATSAPP_LINK;
 }
 
-export const FACEBOOK_LINK = 'https://www.facebook.com/446639648529726';

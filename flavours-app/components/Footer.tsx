@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { FACEBOOK_LINK } from '@/lib/whatsapp';
 
 export default function Footer() {
   return (
@@ -11,6 +10,9 @@ export default function Footer() {
             <p>
               Handcrafted with love from our home kitchen in Old Bowenpally,
               Secunderabad. Every creation is made fresh, just for you.
+            </p>
+            <p style={{ fontSize: '0.8rem', color: '#9E9790', marginTop: '10px' }}>
+              FSSAI Lic. No: 23623029000268
             </p>
           </div>
 
@@ -24,10 +26,11 @@ export default function Footer() {
 
           <div className="footer-col">
             <h4>Categories</h4>
-            <Link href="/menu">Cakes</Link>
-            <Link href="/menu">Cupcakes</Link>
-            <Link href="/menu">Brownies</Link>
-            <Link href="/menu">Cookies</Link>
+            <Link href="/menu">Chocolate Heaven</Link>
+            <Link href="/menu">Fusion Cakes</Link>
+            <Link href="/menu">Premium Cakes</Link>
+            <Link href="/menu">Cup Cakes</Link>
+            <Link href="/menu">Tea Break Treats</Link>
           </div>
 
           <div className="footer-col">
@@ -35,11 +38,11 @@ export default function Footer() {
             <a href="https://wa.me/917207022710" target="_blank" rel="noopener noreferrer">
               📱 WhatsApp
             </a>
-            <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer">
-              📘 Facebook
-            </a>
             <a href="https://www.instagram.com/flavours_bakedwithlove/" target="_blank" rel="noopener noreferrer">
               📸 Instagram
+            </a>
+            <a href="https://www.youtube.com/@flavoursbysreeja" target="_blank" rel="noopener noreferrer">
+              🎥 YouTube
             </a>
             <p style={{ fontSize: '0.85rem', color: '#9E9790', marginTop: '8px', lineHeight: 1.5 }}>
               Flat no.307, Tirumala Sankalp Arcade,
@@ -50,6 +53,9 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Flavours — Baked with Love. All rights reserved.</p>
+          <p style={{ fontSize: '0.75rem', color: '#8a837d', marginTop: '4px' }}>
+            FSSAI: 23623029000268
+          </p>
           <div className="footer-socials">
             <a
               href="https://wa.me/917207022710"
@@ -60,12 +66,20 @@ export default function Footer() {
               💬
             </a>
             <a
-              href={FACEBOOK_LINK}
+              href="https://www.instagram.com/flavours_bakedwithlove/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook"
+              aria-label="Instagram"
             >
-              📘
+              📸
+            </a>
+            <a
+              href="https://www.youtube.com/@flavoursbysreeja"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
+              🎥
             </a>
           </div>
         </div>
