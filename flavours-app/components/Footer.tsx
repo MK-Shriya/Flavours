@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import WhatsAppIcon from './WhatsAppIcon';
 
 export default function Footer() {
   return (
@@ -41,7 +42,7 @@ export default function Footer() {
             <a href="https://www.instagram.com/flavours_bakedwithlove/" target="_blank" rel="noopener noreferrer">
               📸 Instagram
             </a>
-            <a href="https://www.youtube.com/@flavoursbysreeja" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@flavours_bakedwithlove" target="_blank" rel="noopener noreferrer">
               🎥 YouTube
             </a>
             <p style={{ fontSize: '0.85rem', color: '#9E9790', marginTop: '8px', lineHeight: 1.5 }}>
@@ -63,7 +64,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="WhatsApp"
             >
-              💬
+              <WhatsAppIcon size={18} color="#25D366" />
             </a>
             <a
               href="https://www.instagram.com/flavours_bakedwithlove/"
@@ -74,7 +75,7 @@ export default function Footer() {
               📸
             </a>
             <a
-              href="https://www.youtube.com/@flavoursbysreeja"
+              href="https://www.youtube.com/@flavours_bakedwithlove"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"

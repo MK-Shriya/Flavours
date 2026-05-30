@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import WhatsAppIcon from './WhatsAppIcon';
 
 export default function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -22,7 +23,7 @@ export default function FloatingWhatsApp() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
       >
-        💬
+        <WhatsAppIcon size={30} color="#fff" />
       </a>
       <div
         className="floating-whatsapp-tooltip"

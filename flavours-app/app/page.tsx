@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getFeaturedItems } from '@/lib/menu-data';
 import { getReviews } from '@/lib/supabase';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -70,7 +71,7 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-bg">
           <Image
-            src="/hero/pexels-anhelina-vasylyk-734724285-34159030.jpg"
+            src="/hero/pexels-israyosoy-30877408.jpg"
             alt="Beautiful bakery background"
             fill
             style={{ objectFit: 'cover' }}
@@ -119,7 +120,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="btn btn-whatsapp btn-lg"
             >
-              💬 Order on WhatsApp
+              <WhatsAppIcon size={18} color="currentColor" /> Order on WhatsApp
             </a>
           </motion.div>
 
@@ -494,7 +495,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="btn btn-primary btn-lg"
               >
-                💬 Discuss Your Event
+                <WhatsAppIcon size={18} color="currentColor" /> Discuss Your Event
               </a>
             </motion.div>
           </div>
@@ -590,7 +591,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="btn btn-whatsapp btn-lg"
               >
-                💬 Chat with Us
+                <WhatsAppIcon size={18} color="currentColor" /> Chat with Us
               </a>
             </div>
           </motion.div>

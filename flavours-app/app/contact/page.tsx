@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -12,7 +14,17 @@ export default function ContactPage() {
     <div className="contact-page">
       {/* Contact Hero */}
       <section className="contact-hero">
-        <div className="container">
+        <div className="page-hero-bg">
+          <Image
+            src="/hero/pexels-trishik-bose-166596160-33339343.jpg"
+            alt="Sweet treats background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center 45%' }}
+            priority
+          />
+        </div>
+        <div className="page-hero-overlay" />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <motion.h1
             className="heading-xl"
             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +63,7 @@ export default function ContactPage() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <div className="contact-icon pink">💬</div>
+              <div className="contact-icon pink"><WhatsAppIcon size={24} color="#25D366" /></div>
               <div className="contact-info">
                 <h3>WhatsApp</h3>
                 <a
@@ -79,11 +91,11 @@ export default function ContactPage() {
               <div className="contact-info">
                 <h3>YouTube</h3>
                 <a
-                  href="https://www.youtube.com/@flavoursbysreeja"
+                  href="https://www.youtube.com/@flavours_bakedwithlove"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  flavours by sreeja
+                  flavours_bakedwithlove
                 </a>
                 <p style={{ marginTop: '4px' }}>
                   Watch our baking videos and tutorials!

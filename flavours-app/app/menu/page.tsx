@@ -3,17 +3,35 @@
 import { useState, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { menuItems, categories, getMenuByCategory, type Category } from '@/lib/menu-data';
+import { menuItems, getMenuByCategory, type Category } from '@/lib/menu-data';
 import { generateWhatsAppMessage, openWhatsApp, type CartItem } from '@/lib/whatsapp';
 import { createOrder, generateOrderId } from '@/lib/supabase';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
+// Cake sub-categories that nest under the "Cakes" parent
+const cakeSubCategories: { key: Category; label: string; icon: string }[] = [
+  { key: 'Chocolate Heaven', label: 'Chocolate Heaven', icon: '🍫' },
+  { key: 'Fusion Cakes', label: 'Fusion Cakes', icon: '🎨' },
+  { key: 'Pure Cream', label: 'Pure Crème', icon: '🍦' },
+  { key: 'Premium Cakes', label: 'Premium', icon: '👑' },
+];
+
+// Top-level categories with icons
+const topLevelCategories: { key: Category; label: string; icon: string }[] = [
+  { key: 'Cup Cakes', label: 'Cupcakes', icon: '🧁' },
+  { key: 'Tea Break Treats', label: 'Tea Treats', icon: '☕' },
+  { key: 'Crumble n Crunch', label: 'Cookies', icon: '🍪' },
+  { key: 'Mini Indulgences', label: 'Mini Bites', icon: '🍩' },
+];
+
 export default function MenuPage() {
-  const [activeCategory, setActiveCategory] = useState<Category>('All');
+  const [activeCategory, setActiveCategory] = useState<Category | 'Cakes'>('All');
+  const [cakesOpen, setCakesOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [orderModalOpen, setOrderModalOpen] = useState(false);
@@ -22,7 +40,16 @@ export default function MenuPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const categoryItems = getMenuByCategory(activeCategory);
+  // When "Cakes" parent is selected, show all 4 cake sub-categories combined
+  const categoryItems = useMemo(() => {
+    if (activeCategory === 'Cakes') {
+      return menuItems.filter((item) =>
+        cakeSubCategories.some((sc) => sc.key === item.category)
+      );
+    }
+    return getMenuByCategory(activeCategory as Category);
+  }, [activeCategory]);
+
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return categoryItems;
     const q = searchQuery.toLowerCase();
@@ -93,11 +120,56 @@ export default function MenuPage() {
     setIsSubmitting(false);
   };
 
+  const isCakeActive = activeCategory === 'Cakes' || cakeSubCategories.some((sc) => sc.key === activeCategory);
+  const activeCakeSub = cakeSubCategories.find((sc) => sc.key === activeCategory);
+
+  const handleCakesToggle = () => {
+    if (!cakesOpen) {
+      setCakesOpen(true);
+      setActiveCategory('Cakes');
+      setSearchQuery('');
+    } else if (activeCategory === 'Cakes') {
+      setCakesOpen(false);
+    } else {
+      // A sub-category is selected, clicking parent resets to all cakes
+      setActiveCategory('Cakes');
+      setSearchQuery('');
+    }
+  };
+
+  const handleSubCategoryClick = (cat: Category) => {
+    setActiveCategory(cat);
+    setCakesOpen(false);
+    setSearchQuery('');
+  };
+
+  const handleTopLevelClick = (cat: Category | 'All') => {
+    setCakesOpen(false);
+    setActiveCategory(cat);
+    setSearchQuery('');
+  };
+
+  const handleClearCakeSub = () => {
+    setActiveCategory('Cakes');
+    setCakesOpen(true);
+    setSearchQuery('');
+  };
+
   return (
     <div className="menu-page">
       {/* Menu Hero */}
       <section className="menu-hero">
-        <div className="container">
+        <div className="page-hero-bg">
+          <Image
+            src="/hero/pexels-nati-87264186-24425290.jpg"
+            alt="Delicious cakes background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center 50%' }}
+            priority
+          />
+        </div>
+        <div className="page-hero-overlay" />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <motion.h1
             className="heading-xl"
             initial={{ opacity: 0, y: 20 }}
@@ -118,7 +190,7 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Search + Category Tabs */}
+      {/* Search + Category Nav */}
       <div className="menu-controls">
         <div className="menu-search">
           <span className="menu-search-icon">🔍</span>
@@ -140,17 +212,87 @@ export default function MenuPage() {
             </button>
           )}
         </div>
-        <div className="category-tabs">
-          {categories.map((cat) => (
+
+        {/* Creative Centered Category Nav */}
+        <nav className="menu-nav">
+          <div className="menu-nav-track">
+            {/* All */}
             <button
-              key={cat}
-              className={`category-tab ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => { setActiveCategory(cat); setSearchQuery(''); }}
+              className={`menu-nav-item ${activeCategory === 'All' ? 'active' : ''}`}
+              onClick={() => handleTopLevelClick('All')}
             >
-              {cat}
+              <span className="menu-nav-icon">✨</span>
+              <span className="menu-nav-label">All</span>
             </button>
-          ))}
-        </div>
+
+            {/* Cakes — with dropdown */}
+            <div
+              className="menu-nav-dropdown-wrapper"
+              onMouseEnter={() => setCakesOpen(true)}
+              onMouseLeave={() => setCakesOpen(false)}
+            >
+              {/* Show selected sub-category chip if one is active */}
+              {activeCakeSub ? (
+                <button
+                  className="menu-nav-item active has-sub-selected"
+                  onClick={handleClearCakeSub}
+                >
+                  <span className="menu-nav-icon">{activeCakeSub.icon}</span>
+                  <span className="menu-nav-label">{activeCakeSub.label}</span>
+                  <span className="menu-nav-close">✕</span>
+                </button>
+              ) : (
+                <button
+                  className={`menu-nav-item ${isCakeActive ? 'active' : ''}`}
+                  onClick={handleCakesToggle}
+                >
+                  <span className="menu-nav-icon">🎂</span>
+                  <span className="menu-nav-label">Cakes</span>
+                  <span className={`menu-nav-chevron ${cakesOpen ? 'open' : ''}`}>
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </span>
+                </button>
+              )}
+
+              {/* Floating Dropdown */}
+              <AnimatePresence>
+                {cakesOpen && (
+                  <motion.div
+                    className="menu-dropdown"
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                  >
+                    <div className="menu-dropdown-header">Choose a type</div>
+                    {cakeSubCategories.map((sub) => (
+                      <button
+                        key={sub.key}
+                        className={`menu-dropdown-item ${activeCategory === sub.key ? 'active' : ''}`}
+                        onClick={() => handleSubCategoryClick(sub.key)}
+                      >
+                        <span className="menu-dropdown-item-icon">{sub.icon}</span>
+                        <span className="menu-dropdown-item-label">{sub.label}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Other categories */}
+            {topLevelCategories.map((cat) => (
+              <button
+                key={cat.key}
+                className={`menu-nav-item ${activeCategory === cat.key ? 'active' : ''}`}
+                onClick={() => handleTopLevelClick(cat.key)}
+              >
+                <span className="menu-nav-icon">{cat.icon}</span>
+                <span className="menu-nav-label">{cat.label}</span>
+              </button>
+            ))}
+          </div>
+        </nav>
       </div>
 
       {/* Menu Grid */}
@@ -291,7 +433,7 @@ export default function MenuPage() {
                 setOrderModalOpen(true);
               }}
             >
-              💬 Place Order via WhatsApp
+              <WhatsAppIcon size={18} color="currentColor" /> Place Order via WhatsApp
             </button>
           </div>
         )}
@@ -384,7 +526,7 @@ export default function MenuPage() {
               onClick={handlePlaceOrder}
               disabled={!customerName.trim() || !customerPhone.trim() || isSubmitting}
             >
-              {isSubmitting ? '⏳ Processing...' : '💬 Send to WhatsApp'}
+              {isSubmitting ? '⏳ Processing...' : <><WhatsAppIcon size={18} color="currentColor" /> Send to WhatsApp</>}
             </button>
           </div>
         </div>

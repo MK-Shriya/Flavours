@@ -23,7 +23,17 @@ export default function AboutPage() {
     <div className="about-page">
       {/* About Hero */}
       <section className="about-hero">
-        <div className="container">
+        <div className="page-hero-bg">
+          <Image
+            src="/hero/pexels-dmitriy-tarasenko-70199286-17010915.jpg"
+            alt="Artisan baking background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center 55%' }}
+            priority
+          />
+        </div>
+        <div className="page-hero-overlay" />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <motion.h1
             className="heading-xl"
             initial={{ opacity: 0, y: 20 }}
@@ -102,8 +112,8 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Image
-                src="/lifestyle/birthday-party.jpg"
-                alt="Making memories with Flavours cakes"
+                src="/lifestyle/profile.jpeg"
+                alt="Sreeja — the heart behind Flavours"
                 width={500}
                 height={625}
                 style={{ objectFit: 'cover', width: '100%', height: '100%' }}
