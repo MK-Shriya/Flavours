@@ -75,10 +75,12 @@ export default function AboutPage() {
               </motion.p>
 
               <motion.p variants={fadeInUp} custom={1}>
-                Sreeja Sreekumar once spent her days in the corporate world at Olivia —
-                spreadsheets, meetings, deadlines. But her heart was always elsewhere.
-                It was in the kitchen, in the quiet hum of the oven, in the joy of watching
-                someone take that first bite and smile.
+                Sreeja Sreekumar spent more than two decades in the corporate world —
+                navigating the fast-paced industries of telecom, insurance, wellness
+                and healthcare. Spreadsheets, meetings, deadlines — she mastered them
+                all. But her heart was always elsewhere. It was in the kitchen, in the
+                quiet hum of the oven, in the joy of watching someone take that first
+                bite and smile.
               </motion.p>
 
               <motion.p variants={fadeInUp} custom={2}>
