@@ -56,84 +56,82 @@ export default function ContactPage() {
         <div className="contact-grid">
           {/* Left: Contact Cards */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <motion.div
+            <motion.a
+              href="https://wa.me/917207022710"
+              target="_blank"
+              rel="noopener noreferrer"
               className="contact-info-card"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
             >
               <div className="contact-icon pink"><WhatsAppIcon size={24} color="#25D366" /></div>
               <div className="contact-info">
                 <h3>WhatsApp</h3>
-                <a
-                  href="https://wa.me/917207022710"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  +91 72070 22710
-                </a>
+                <p style={{ fontWeight: 500 }}>+91 72070 22710</p>
                 <p style={{ marginTop: '4px' }}>
                   The fastest way to reach us — chat directly!
                 </p>
               </div>
-            </motion.div>
+            </motion.a>
 
-            <motion.div
+            <motion.a
+              href="https://www.youtube.com/@flavours_bakedwithlove"
+              target="_blank"
+              rel="noopener noreferrer"
               className="contact-info-card"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
             >
               <div className="contact-icon lavender">🎥</div>
               <div className="contact-info">
                 <h3>YouTube</h3>
-                <a
-                  href="https://www.youtube.com/@flavours_bakedwithlove"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  flavours_bakedwithlove
-                </a>
+                <p style={{ fontWeight: 500 }}>flavours_bakedwithlove</p>
                 <p style={{ marginTop: '4px' }}>
                   Watch our baking videos and tutorials!
                 </p>
               </div>
-            </motion.div>
+            </motion.a>
 
-            <motion.div
+            <motion.a
+              href="https://www.instagram.com/flavours_bakedwithlove/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="contact-info-card"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
             >
               <div className="contact-icon pink">📸</div>
               <div className="contact-info">
                 <h3>Instagram</h3>
-                <a
-                  href="https://www.instagram.com/flavours_bakedwithlove/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @flavours_bakedwithlove
-                </a>
+                <p style={{ fontWeight: 500 }}>@flavours_bakedwithlove</p>
                 <p style={{ marginTop: '4px' }}>
                   Check out our latest aesthetic bakes!
                 </p>
               </div>
-            </motion.div>
+            </motion.a>
 
-            <motion.div
+            <motion.a
+              href="https://maps.app.goo.gl/5AMrHukZhyespC5i6"
+              target="_blank"
+              rel="noopener noreferrer"
               className="contact-info-card"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
             >
               <div className="contact-icon yellow">📍</div>
               <div className="contact-info">
@@ -145,7 +143,7 @@ export default function ContactPage() {
                   Old Bowenpally, Secunderabad-500011
                 </p>
               </div>
-            </motion.div>
+            </motion.a>
 
             <motion.div
               className="contact-info-card"
@@ -158,10 +156,10 @@ export default function ContactPage() {
               <div className="contact-icon pink">🕐</div>
               <div className="contact-info">
                 <h3>Order Timings</h3>
-                <p>
-                  <strong>Pre-order at least 2 days in advance</strong><br />
-                  All items are freshly baked to order — no ready stock.<br />
-                  Message us on WhatsApp to discuss your requirements!
+                <p style={{ fontSize: '0.85rem' }}>
+                  <strong>Customised cakes:</strong> Pre-order 5 days in advance<br />
+                  <strong>Regular cakes:</strong> Pre-order 3 days in advance<br />
+                  All items freshly baked to order — message us on WhatsApp!
                 </p>
               </div>
             </motion.div>
@@ -176,15 +174,23 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.437!2d78.4895!3d17.4760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9a4f0d3d9db1%3A0x0!2sOld%20Bowenpally%2C%20Secunderabad%2C%20Telangana%20500011!5e0!3m2!1sen!2sin!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2!2d78.4895!3d17.476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9b7d2b2f4215%3A0xf8969e73d9076774!2sFlavours_bakedwithlove!5e0!3m2!1sen!2sin!4v1"
               width="100%"
-              height="100%"
-              style={{ border: 'none', minHeight: '500px' }}
+              height="400"
+              style={{ border: 'none' }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Flavours Location - Old Bowenpally, Secunderabad"
             />
+            <a
+              href="https://maps.app.goo.gl/5AMrHukZhyespC5i6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-map-link"
+            >
+              📍 Open in Google Maps
+            </a>
           </motion.div>
         </div>
       </section>

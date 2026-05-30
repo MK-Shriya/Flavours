@@ -127,7 +127,7 @@ export default function HomePage() {
           <motion.div className="hero-badge" variants={fadeInUp} custom={4}>
             <span>📍</span> Old Bowenpally, Secunderabad
             <span style={{ margin: '0 8px', opacity: 0.3 }}>|</span>
-            <span>🕐</span> Pre-order 2 days before
+            <span>🕐</span> Pre-order 3–5 days before
           </motion.div>
         </motion.div>
       </section>
@@ -196,7 +196,7 @@ export default function HomePage() {
               <span className="ticker-item">Made with Love <span className="ticker-dot" /></span>
               <span className="ticker-item">100% Handmade <span className="ticker-dot" /></span>
               <span className="ticker-item">No Preservatives <span className="ticker-dot" /></span>
-              <span className="ticker-item">Pre-order 2 Days Before <span className="ticker-dot" /></span>
+              <span className="ticker-item">Pre-order 3–5 Days Before <span className="ticker-dot" /></span>
               <span className="ticker-item">FSSAI Licensed <span className="ticker-dot" /></span>
               <span className="ticker-item">Old Bowenpally, Secunderabad <span className="ticker-dot" /></span>
               <span className="ticker-item">Custom Designs Available <span className="ticker-dot" /></span>
@@ -340,7 +340,7 @@ export default function HomePage() {
               <div className="step-icon">🎉</div>
               <p className="step-number">Step 03</p>
               <h3 className="heading-sm">Enjoy!</h3>
-              <p>We&apos;ll bake it fresh and have it ready for you. Pre-order 2 days ahead!</p>
+              <p>We&apos;ll bake it fresh and have it ready for you. Pre-order 3–5 days ahead!</p>
             </motion.div>
           </motion.div>
         </div>
