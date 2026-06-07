@@ -63,8 +63,7 @@ export const metadata: Metadata = {
     apple: '/logo.jpeg',
   },
   verification: {
-    // Add your Google Search Console verification code here when you set it up:
-    // google: 'your-verification-code',
+    google: 'YM6ItnZjiLqBQCzgY-vO51jWPZQMVa5aE126LTtXMvk',
   },
 };
 
