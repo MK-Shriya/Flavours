@@ -1,0 +1,318 @@
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, duration: 0.6, ease: 'easeOut' },
+  }),
+};
+
+// Gallery images (all from work/ folder)
+const galleryImages = Array.from({ length: 37 }, (_, i) => `/gallery/gallery-${i + 1}.jpg`);
+
+export default function AboutContent() {
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+
+  return (
+    <div className="about-page">
+      {/* About Hero */}
+      <section className="about-hero">
+        <div className="page-hero-bg">
+          <Image
+            src="/hero/pexels-dmitriy-tarasenko-70199286-17010915.jpg"
+            alt="Artisan baking background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center 55%' }}
+            priority
+          />
+        </div>
+        <div className="page-hero-overlay" />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <motion.h1
+            className="heading-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Story
+          </motion.h1>
+          <motion.div
+            className="section-divider"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          />
+          <motion.p
+            className="body-lg text-muted"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            style={{ maxWidth: '500px', margin: '0.5rem auto 0' }}
+          >
+            The heart and soul behind every Flavours creation
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Sreeja's Story */}
+      <section className="about-story">
+        <div className="container">
+          <div className="about-story-content">
+            <motion.div
+              className="about-story-text"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <motion.p className="highlight" variants={fadeInUp} custom={0}>
+                &ldquo;Behind every cake is a story of courage.&rdquo;
+              </motion.p>
+
+              <motion.p variants={fadeInUp} custom={1}>
+                Sreeja Sreekumar spent more than two decades in the corporate world —
+                navigating the fast-paced industries of telecom, insurance, wellness
+                and healthcare. Spreadsheets, meetings, deadlines — she mastered them
+                all. But her heart was always elsewhere. It was in the kitchen, in the
+                quiet hum of the oven, in the joy of watching someone take that first
+                bite and smile.
+              </motion.p>
+
+              <motion.p variants={fadeInUp} custom={2}>
+                In 2020, she made the leap — trading boardrooms for butter and flour,
+                presentations for piping bags. What started as a passion project from
+                her home kitchen in Old Bowenpally quickly became something the
+                neighbourhood couldn&apos;t stop talking about.
+              </motion.p>
+
+              <motion.p variants={fadeInUp} custom={3}>
+                Five years later, Sreeja still does everything herself — from kneading
+                the dough at dawn to carefully boxing each order with a personal touch.
+                She knows every regular by name, remembers their favourite flavours,
+                and puts a little piece of her heart into every creation.
+              </motion.p>
+
+              <motion.p
+                variants={fadeInUp}
+                custom={4}
+                style={{ fontWeight: 600, color: 'var(--color-accent)', marginTop: '1rem' }}
+              >
+                Every Flavours creation carries a piece of her heart. ❤️
+              </motion.p>
+            </motion.div>
+
+            <motion.div
+              className="about-story-img"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <Image
+                src="/lifestyle/profile.jpeg"
+                alt="Sreeja — the heart behind Flavours"
+                width={500}
+                height={625}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quality Promise */}
+      <section className="quality-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="heading-lg">Our Promise</h2>
+            <div className="section-divider" />
+            <p>What makes Flavours special</p>
+          </motion.div>
+
+          <div className="quality-grid">
+            <motion.div
+              className="quality-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="quality-card-icon">🌿</div>
+              <h3>Fresh Ingredients</h3>
+              <p>Only the finest, freshest ingredients make it into our kitchen. No preservatives, no shortcuts — just pure, wholesome goodness.</p>
+            </motion.div>
+
+            <motion.div
+              className="quality-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <div className="quality-card-icon">🎨</div>
+              <h3>Fully Customisable</h3>
+              <p>Every order is made to your specifications. Theme, flavour, size, decoration — you dream it, Sreeja creates it.</p>
+            </motion.div>
+
+            <motion.div
+              className="quality-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="quality-card-icon">❤️</div>
+              <h3>Made with Love</h3>
+              <p>Every single item is handcrafted by Sreeja herself. When you order from Flavours, you&apos;re ordering from family.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Art of Baking — New Craft Showcase */}
+      <section className="section about-craft-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="heading-lg">The Art of Baking</h2>
+            <div className="section-divider" />
+            <p>From oven to table — a peek into our world of creation</p>
+          </motion.div>
+
+          <div className="craft-showcase">
+            <motion.div
+              className="craft-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                src="/lifestyle/artisan-decorating.jpg"
+                alt="Artisan cake decorating"
+                width={400}
+                height={530}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+              <div className="craft-card-overlay">
+                <h3>The Finishing Touch</h3>
+                <p>Every cake is hand-decorated with fresh fruits and delicate details</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="craft-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <Image
+                src="/lifestyle/chef-finishing.jpg"
+                alt="Chef perfecting a mousse cake"
+                width={400}
+                height={530}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+              <div className="craft-card-overlay">
+                <h3>Precision & Passion</h3>
+                <p>Every layer, every fold is crafted with meticulous care</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="craft-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Image
+                src="/lifestyle/tiramisu-slice.jpg"
+                alt="Beautiful layered tiramisu"
+                width={400}
+                height={530}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+              <div className="craft-card-overlay">
+                <h3>Layers of Love</h3>
+                <p>Rich, decadent layers that tell a story of flavour</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="gallery-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="heading-lg">Gallery</h2>
+            <div className="section-divider" />
+            <p>A glimpse of what comes out of our kitchen</p>
+          </motion.div>
+
+          <div className="gallery-grid">
+            {galleryImages.map((src, i) => (
+              <motion.div
+                key={i}
+                className="gallery-item"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.03 }}
+                onClick={() => setLightboxImg(src)}
+              >
+                <Image
+                  src={src}
+                  alt={`Gallery image ${i + 1}`}
+                  width={300}
+                  height={300}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      {lightboxImg && (
+        <div className="lightbox open" onClick={() => setLightboxImg(null)}>
+          <button className="lightbox-close" onClick={() => setLightboxImg(null)}>
+            ✕
+          </button>
+          <Image
+            src={lightboxImg}
+            alt="Gallery preview"
+            width={800}
+            height={800}
+            style={{ objectFit: 'contain', maxWidth: '90vw', maxHeight: '90vh' }}
+          />
+        </div>
+      )}
+    </div>
+  );
+}

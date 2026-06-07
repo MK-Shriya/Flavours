@@ -31,7 +31,7 @@ export const menuItems: MenuItem[] = [
     name: 'Chocolate Double Delight',
     description: 'Double the chocolate, double the bliss — rich layers of chocolate cake and ganache',
     category: 'Chocolate Heaven',
-    image: '/menu/choc-double-delight.jpg',
+    image: '/menu/choc-double-delight.jpg?v=2',
     featured: true,
   },
   {
@@ -82,7 +82,7 @@ export const menuItems: MenuItem[] = [
     name: 'KitKat',
     description: 'Fun-loaded cake layered and decorated with KitKat bars and chocolate',
     category: 'Chocolate Heaven',
-    image: '/menu/kitkat.jpg',
+    image: '/menu/kitkat.jpg?v=2',
   },
 
   // ═══════════════════════════════════════════════
